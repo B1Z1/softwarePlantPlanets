@@ -1,0 +1,15 @@
+<div>
+  <ul>
+    <li *ngFor="let planet of planetList[pagination.current]">
+      {{ planet.name }}
+    </li>
+  </ul>
+  <ul>
+    <li
+      *ngFor="let number of pagination.count; let i = index"
+      (click)="changePage(i + 1)"
+    >
+      {{ i + 1 }}
+    </li>
+  </ul>
+</div>

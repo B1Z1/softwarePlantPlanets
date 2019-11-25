@@ -1,4 +1,3 @@
-import { SearchService } from "./../shared/search.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -7,7 +6,9 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./search.component.scss"]
 })
 export class SearchComponent implements OnInit {
-  constructor(private searchService: SearchService) {}
+  private searchString = "";
+
+  constructor() {}
 
   ngOnInit() {}
 }
