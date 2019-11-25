@@ -1,4 +1,4 @@
-import { Pagination } from "./../../shared/services/planet-list.service";
+import { Pagination } from "./../../shared/interfaces/pagination";
 import { PlanetListService } from "../../shared/services/planet-list.service";
 import { Component, OnInit } from "@angular/core";
 

@@ -1,22 +1,7 @@
+import { PlanetRequest } from "./../interfaces/planetRequest";
+import { Pagination } from "./../interfaces/pagination";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-
-export interface Pagination {
-  current: string;
-  count: Array<any>;
-  devider: number;
-}
-
-export interface PlanetList {
-  name: string;
-  rotation_period: string;
-}
-
-export interface PlanetRequest {
-  currentPagination: string;
-  count: number;
-  results: PlanetList[];
-}
 
 @Injectable({ providedIn: "root" })
 export class PlanetListService {
