@@ -1,7 +1,8 @@
-import { PlanetRequest } from "./../interfaces/planetRequest";
-import { Pagination } from "./../interfaces/pagination";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+
+import { PlanetRequest } from "./../interfaces/planetRequest";
+import { Pagination } from "./../interfaces/pagination";
 
 @Injectable({ providedIn: "root" })
 export class PlanetListService {
