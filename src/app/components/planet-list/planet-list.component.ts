@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core'
-import { mergeMap, delay } from 'rxjs/operators'
-import { Observable } from 'rxjs'
+import { ScrollService } from './../../shared/services/scroll.service'
+import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core'
+import { fromEvent } from 'rxjs'
 
 import { PlanetListService } from './../../shared/services/planet-list.service'
-import { PlanetListResponse } from './../../shared/interfaces/planet-list-response.interface'
 
 @Component({
   selector: 'app-planet-list',
@@ -11,9 +10,22 @@ import { PlanetListResponse } from './../../shared/interfaces/planet-list-respon
   styleUrls: ['./planet-list.component.scss']
 })
 export class PlanetListComponent implements OnInit {
-  constructor(private planetListService: PlanetListService) {}
+  @ViewChildren('planetItems') $PlanetItems: ElementRef
+
+  private isRequestWait = true
+
+  constructor(private planetListService: PlanetListService, private scrollService: ScrollService) {}
 
   ngOnInit() {
-    this.planetListService.fetchPlanetList().subscribe()
+    this.planetListService.fetchPlanetList().subscribe(res => {})
+
+    this.scrollService.onScrolledDown$.subscribe(() => {
+      if (this.isRequestWait) {
+        this.planetListService.fetchNextPlanetList().subscribe(res => {
+          this.isRequestWait = true
+        })
+      }
+      this.isRequestWait = false
+    })
   }
 }
