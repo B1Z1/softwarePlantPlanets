@@ -1,6 +1,5 @@
 import { ScrollService } from './../../shared/services/scroll.service'
 import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core'
-import { fromEvent } from 'rxjs'
 
 import { PlanetListService } from './../../shared/services/planet-list.service'
 
