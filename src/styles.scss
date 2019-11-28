@@ -7,10 +7,13 @@ html,
 body {
   box-sizing: border-box;
   margin: 0;
-  font-size: $mainFontSize;
+  font-size: $mainFontSize * 0.8;
   font-family: $montserratFontFamily;
   color: $colorMain2;
   background-color: $colorMain;
+  @media only screen and (min-width: $tabletBp) {
+    font-size: $mainFontSize;
+  }
 }
 
 * {
