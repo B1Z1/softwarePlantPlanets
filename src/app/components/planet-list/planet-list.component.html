@@ -1,7 +1,7 @@
 <div class="planet-list">
   <ul>
     <li *ngFor="let planet of planetListService.planetList" class="planet-list__item" #planetItems>
-      <a href="">
+      <a [routerLink]="planet.name.toLowerCase()">
         {{ planet.name }}
       </a>
     </li>
