@@ -11,10 +11,11 @@ import { HeroComponent } from './components/hero/hero.component';
 import { PlanetComponent } from './pages/planet/planet.component';
 import { MainComponent } from './pages/main/main.component';
 import { StardropComponent } from './components/stardrop/stardrop.component';
-import { LoaderComponent } from './components/loader/loader.component'
+import { LoaderComponent } from './components/loader/loader.component';
+import { ThankYouComponent } from './components/thank-you/thank-you.component'
 
 @NgModule({
-  declarations: [AppComponent, PlanetListComponent, SearchComponent, HeroComponent, PlanetComponent, MainComponent, StardropComponent, LoaderComponent],
+  declarations: [AppComponent, PlanetListComponent, SearchComponent, HeroComponent, PlanetComponent, MainComponent, StardropComponent, LoaderComponent, ThankYouComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]

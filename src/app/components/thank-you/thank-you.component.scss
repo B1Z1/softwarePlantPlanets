@@ -1,0 +1,63 @@
+@import '../../../assets/styles/variables.scss';
+
+.thank-you {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  color: $colorMain;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  z-index: 999;
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: $colorMain2;
+    @media only screen and (min-width: $tabletBp) {
+      width: 768px;
+      height: 320px;
+      border-radius: 8px;
+    }
+  }
+  &__title {
+    font-family: $jediFontFamily;
+    color: $colorMain;
+    text-shadow: -1px 0 $colorOperate, 1px 0 $colorOperate, 0 -1px $colorOperate, 0 1px $colorOperate;
+    letter-spacing: 3px;
+    line-height: 1em;
+  }
+  &__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 1px;
+      background-color: $colorMain;
+    }
+    &:before {
+      transform: rotate(-45deg);
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
+  }
+}
