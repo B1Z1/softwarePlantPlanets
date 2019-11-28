@@ -1,1 +1,18 @@
+@import url(http://allfont.net/allfont.css?fonts=star-jedi);
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import './assets/styles/variables.scss';
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-size: $mainFontSize;
+  font-family: $montserratFontFamily;
+  color: $colorMain2;
+  background-color: $colorMain;
+}
+
+* {
+  box-sizing: inherit;
+}

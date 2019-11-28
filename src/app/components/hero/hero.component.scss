@@ -1,0 +1,24 @@
+@import '../../../assets/styles/variables.scss';
+
+.hero {
+  margin-top: 320px;
+  margin-bottom: 128px;
+  text-align: center;
+  width: 100vw;
+  &__title {
+    margin-bottom: 0;
+    font-size: 6rem;
+    font-family: $jediFontFamily;
+    line-height: 0.8em;
+    text-shadow: -1px 0 $colorOperate, 0 1px $colorOperate, 1px 0 $colorOperate, 0 -1px $colorOperate;
+    color: $colorMain;
+    user-select: none;
+    &--change-position {
+      margin-left: -10px;
+    }
+  }
+  &__subtitle {
+    margin-top: 32px;
+    font-weight: 300;
+  }
+}
