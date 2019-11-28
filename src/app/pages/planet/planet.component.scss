@@ -23,7 +23,10 @@
     letter-spacing: 3px;
     text-align: center;
   }
-  &__info {
+  &__information {
+    margin-bottom: 24px;
+  }
+  &__information-item {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;

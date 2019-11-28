@@ -14,11 +14,11 @@ export class PlanetListComponent implements OnInit {
 
   private isRequested = false
 
-  constructor(private planetListService: PlanetListService, private scrollService: ScrollService) {}
+  constructor(private planetListService: PlanetListService, private scrollService: ScrollService) {
+    console.log('inited')
+  }
 
   ngOnInit() {
-    this.planetListService.fetchPlanetList().subscribe(res => {})
-
     this.scrollService.onScrolledDown$.subscribe(() => {
       if (!this.planetListService.isOutOfPaginationNumber()) {
         if (!this.isRequested) {

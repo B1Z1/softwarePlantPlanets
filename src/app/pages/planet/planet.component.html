@@ -1,38 +1,40 @@
 <div *ngIf="isLoaded" class="planet">
   <div class="planet__wrapper">
     <h2 class="planet__name">{{ planetObject.name }}</h2>
-    <div class="planet__info">
-      <span>Diameter:</span>
-      <span>{{ planetObject.diameter }}</span>
+    <div class="planet__information">
+      <div class="planet__information-item">
+        <span>Diameter:</span>
+        <span>{{ planetObject.diameter }}</span>
+      </div>
+      <div class="planet__information-item">
+        <span>Rotation period: </span>
+        <span>{{ planetObject.rotation_period }}</span>
+      </div>
+      <div class="planet__information-item">
+        <span>Orbital period:</span>
+        <span>{{ planetObject.orbital_period }}</span>
+      </div>
+      <div class="planet__information-item">
+        <span>Climate:</span>
+        <span>{{ planetObject.climate }}</span>
+      </div>
+      <div class="planet__information-item">
+        <span>Gravity:</span>
+        <span>{{ planetObject.gravity }}</span>
+      </div>
+      <div class="planet__information-item">
+        <span>Terrain:</span>
+        <span>{{ planetObject.terrain }}</span>
+      </div>
+      <div class="planet__information-item">
+        <span>Surface water:</span>
+        <span>{{ planetObject.surface_water }}</span>
+      </div>
+      <div class="planet__information-item">
+        <span>Population:</span>
+        <span>{{ planetObject.population }}</span>
+      </div>
     </div>
-    <div class="planet__info">
-      <span>Rotation period: </span>
-      <span>{{ planetObject.rotation_period }}</span>
-    </div>
-    <div class="planet__info">
-      <span>Orbital period:</span>
-      <span>{{ planetObject.orbital_period }}</span>
-    </div>
-    <div class="planet__info">
-      <span>Climate:</span>
-      <span>{{ planetObject.climate }}</span>
-    </div>
-    <div class="planet__info">
-      <span>Gravity:</span>
-      <span>{{ planetObject.gravity }}</span>
-    </div>
-    <div class="planet__info">
-      <span>Terrain:</span>
-      <span>{{ planetObject.terrain }}</span>
-    </div>
-    <div class="planet__info">
-      <span>Surface water:</span>
-      <span>{{ planetObject.surface_water }}</span>
-    </div>
-    <div class="planet__info">
-      <span>Population:</span>
-      <span>{{ planetObject.population }}</span>
-    </div>
-    <a routerLink="/" class="link__sword">Come to main page</a>
+    <a routerLink="/" class="link__sword planet__link">Come to main page</a>
   </div>
 </div>

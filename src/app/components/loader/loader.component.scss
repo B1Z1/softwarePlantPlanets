@@ -1,0 +1,33 @@
+@import '../../../assets/styles/variables.scss';
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 64px;
+  &__cube {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background-color: $colorOperate;
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+  @for $i from 1 through 3 {
+    &__cube:nth-of-type(#{$i}) {
+      animation: cubeAnimation 0.8s infinite ease-in-out;
+      animation-delay: #{$i * 0.3}s;
+    }
+  }
+}
+
+@keyframes cubeAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

@@ -13,7 +13,9 @@ export class SearchComponent implements OnInit {
 
   private searchString = ''
 
-  constructor(private planetListService: PlanetListService) {}
+  constructor(private planetListService: PlanetListService) {
+    this.searchString = this.planetListService.searchString
+  }
 
   ngOnInit() {}
 
