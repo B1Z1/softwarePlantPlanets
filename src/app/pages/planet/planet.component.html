@@ -1,3 +1,4 @@
+<app-loader class="planet__loader" [isLoading]="!isLoaded"></app-loader>
 <div *ngIf="isLoaded" class="planet">
   <div class="planet__wrapper">
     <h2 class="planet__name">{{ planetObject.name }}</h2>
