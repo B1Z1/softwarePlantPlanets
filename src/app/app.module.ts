@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
-import { PlanetListComponent } from './components/planet-list/planet-list.component'
+import { PlanetListComponent } from './components/planet-list/planet-list.component';
+import { SearchComponent } from './components/search/search.component'
 
 @NgModule({
-  declarations: [AppComponent, PlanetListComponent],
+  declarations: [AppComponent, PlanetListComponent, SearchComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]

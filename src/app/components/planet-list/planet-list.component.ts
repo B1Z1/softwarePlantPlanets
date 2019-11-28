@@ -2,6 +2,7 @@ import { ScrollService } from './../../shared/services/scroll.service'
 import { Component, OnInit, ViewChildren, ElementRef } from '@angular/core'
 
 import { PlanetListService } from './../../shared/services/planet-list.service'
+import { delay } from 'rxjs/operators'
 
 @Component({
   selector: 'app-planet-list',
@@ -11,7 +12,7 @@ import { PlanetListService } from './../../shared/services/planet-list.service'
 export class PlanetListComponent implements OnInit {
   @ViewChildren('planetItems') $PlanetItems: ElementRef
 
-  private isRequestWait = true
+  private isRequested = false
 
   constructor(private planetListService: PlanetListService, private scrollService: ScrollService) {}
 
@@ -19,12 +20,18 @@ export class PlanetListComponent implements OnInit {
     this.planetListService.fetchPlanetList().subscribe(res => {})
 
     this.scrollService.onScrolledDown$.subscribe(() => {
-      if (this.isRequestWait) {
-        this.planetListService.fetchNextPlanetList().subscribe(res => {
-          this.isRequestWait = true
-        })
+      if (!this.planetListService.isOutOfPaginationNumber()) {
+        if (!this.isRequested) {
+          this.planetListService
+            .fetchNextPlanetList()
+            .pipe(delay(300))
+            .subscribe(res => {
+              this.isRequested = false
+              console.log(res)
+            })
+        }
+        this.isRequested = true
       }
-      this.isRequestWait = false
     })
   }
 }
