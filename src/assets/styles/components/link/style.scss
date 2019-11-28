@@ -1,0 +1,41 @@
+.link {
+  &__sword {
+    position: relative;
+    margin-top: 16px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.4rem;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      transition: box-shadow, width;
+      transition-duration: 0.2s;
+      transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    &:before {
+      top: -8px;
+      left: 0;
+      box-shadow: 0 0 0 0 $colorGreenSword;
+    }
+    &:after {
+      bottom: -8px;
+      right: 0;
+      box-shadow: 0 0 0 0 $colorRedSword;
+    }
+    &:hover {
+      &:before,
+      &:after {
+        width: 100%;
+      }
+      &:before {
+        box-shadow: 0 0 4px 2px $colorGreenSword;
+      }
+      &:after {
+        box-shadow: 0 0 4px 2px $colorRedSword;
+      }
+    }
+  }
+}
