@@ -1,6 +1,6 @@
-import { PlanetList } from './planet-list.interface'
+import { PlanetObject } from 'src/app/shared/interfaces/planet-object.interface'
 export interface PlanetListResponse {
   count?: number
-  results?: PlanetList[]
+  results?: PlanetObject[]
   message?: string
 }

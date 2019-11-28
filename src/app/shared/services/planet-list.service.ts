@@ -4,18 +4,18 @@ import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 
 import { PlanetListResponse } from './../interfaces/planet-list-response.interface'
-import { PlanetList } from './../interfaces/planet-list.interface'
+import { PlanetObject } from './../interfaces/planet-list.interface'
 
 @Injectable({ providedIn: 'root' })
 export class PlanetListService {
-  public planetList: PlanetList[] = []
+  public planetList: PlanetObject[] = []
   public searchString = ''
+  public _apiLink: string = 'https://swapi.co/api/planets'
 
-  private apiLink: string = 'https://swapi.co/api/planets'
   private currentPaginationNumber = 1
   private paginationCount: number
   private allResults: number
-  private cachedPlanetList: PlanetList[] = []
+  private cachedPlanetList: PlanetObject[] = []
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +26,7 @@ export class PlanetListService {
    * @returns {PlanetListResponse}
    */
   public fetchPlanetList(): Observable<PlanetListResponse> {
-    return this.http.get<PlanetListResponse>(this.apiLink).pipe(
+    return this.http.get<PlanetListResponse>(this._apiLink).pipe(
       tap(res => {
         this.allResults = res.count
         this.updatePaginationCount(res.count)
@@ -59,7 +59,7 @@ export class PlanetListService {
     }
 
     const response = this.http
-      .get<PlanetListResponse>(this.apiLink, {
+      .get<PlanetListResponse>(this._apiLink, {
         params: {
           page: `${this.currentPaginationNumber}`,
           search: this.searchString
@@ -68,7 +68,7 @@ export class PlanetListService {
       .pipe(
         tap(res => {
           const { results, count } = res
-          let newPlanetList: PlanetList[] = this.findNewPlanets(results)
+          let newPlanetList: PlanetObject[] = this.findNewPlanets(results)
 
           this.updateCache([...this.cachedPlanetList, ...newPlanetList])
           this.updatePlanetList(this.searchString ? [...this.planetList, ...newPlanetList] : this.cachedPlanetList)
@@ -91,29 +91,29 @@ export class PlanetListService {
     return this.currentPaginationNumber > this.paginationCount
   }
 
-  private getFromCacheByName(name: string): PlanetList[] {
+  private getFromCacheByName(name: string): PlanetObject[] {
     return this.cachedPlanetList.filter(planet => planet.name.toLowerCase().indexOf(name.toLowerCase()) !== -1)
   }
 
   /**
    * @function findNewPlanets
-   * @param {PlanetList} results
+   * @param {PlanetObject} results
    * @description Function search from results new planets
    *              which not in cached Array and save them
-   * @returns {PlanetList}
+   * @returns {PlanetObject}
    */
-  private findNewPlanets(results): PlanetList[] {
+  private findNewPlanets(results): PlanetObject[] {
     return results.filter(result => {
       const name = result.name.toLowerCase()
       return this.cachedPlanetList.filter(planet => planet.name.toLowerCase().indexOf(name) !== -1).length === 0
     })
   }
 
-  private updateCache(list: PlanetList[]) {
+  private updateCache(list: PlanetObject[]) {
     this.cachedPlanetList = list.sort()
   }
 
-  private updatePlanetList(list: PlanetList[]) {
+  private updatePlanetList(list: PlanetObject[]) {
     this.planetList = list.sort()
   }
 
@@ -142,5 +142,9 @@ export class PlanetListService {
    */
   public resetPaginationNumber() {
     this.currentPaginationNumber = 1
+  }
+
+  get apiLink() {
+    return this._apiLink
   }
 }
