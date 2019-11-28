@@ -1,6 +1,5 @@
-import { tap } from 'rxjs/operators'
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
 
 import { PlanetListService } from './../../shared/services/planet-list.service'
@@ -14,13 +13,31 @@ import { PlanetObject } from 'src/app/shared/interfaces/planet-object.interface'
 })
 export class PlanetComponent implements OnInit {
   private planetName: string
-  private planetObject: PlanetObject
+  private planetObject: PlanetObject = {
+    name: '',
+    climate: '',
+    created: '',
+    diameter: '',
+    edited: '',
+    gravity: '',
+    orbital_period: '',
+    population: '',
+    rotation_period: '',
+    surface_water: '',
+    terrain: ''
+  }
+  private isLoaded = false
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private planetListService: PlanetListService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private http: HttpClient,
+    private planetListService: PlanetListService
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.planetName = params.name
+      this.planetName = params.name.toLowerCase()
       this.http
         .get<PlanetListResponse>(this.planetListService.apiLink, {
           params: {
@@ -28,8 +45,14 @@ export class PlanetComponent implements OnInit {
           }
         })
         .subscribe(res => {
-          this.planetObject = res.results[0]
-          console.log(this.planetObject)
+          const { results, count } = res
+          if (count === 0) this.router.navigate(['/'])
+          else {
+            const name = results[0].name.toLowerCase()
+            if (name !== this.planetName) this.router.navigate([name])
+            this.planetObject = res.results[0]
+            this.isLoaded = true
+          }
         })
     })
   }

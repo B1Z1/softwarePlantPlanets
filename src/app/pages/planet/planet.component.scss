@@ -1,0 +1,31 @@
+@import '../../../assets/styles/variables.scss';
+
+.planet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding-right: 16px;
+  padding-left: 16px;
+  color: $colorOperate;
+  &__wrapper {
+    width: 100%;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    @media only screen and (min-width: $tabletBp) {
+      width: 60%;
+    }
+  }
+  &__name {
+    font-family: $jediFontFamily;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+}
