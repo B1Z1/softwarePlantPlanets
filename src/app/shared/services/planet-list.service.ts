@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 import { tap } from 'rxjs/operators'
 
 import { PlanetListResponse } from './../interfaces/planet-list-response.interface'
-import { PlanetObject } from './../interfaces/planet-list.interface'
+import { PlanetObject } from './../interfaces/planet-object.interface'
 
 @Injectable({ providedIn: 'root' })
 export class PlanetListService {

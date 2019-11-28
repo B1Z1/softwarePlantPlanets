@@ -2,7 +2,7 @@ import { StarParameters } from './../../shared/interfaces/star-parameters.interf
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core'
 import * as THREE from 'three'
 import { EventManager } from '@angular/platform-browser'
-
+declare var require: (path: string) => any
 @Component({
   selector: 'app-stardrop',
   templateUrl: './stardrop.component.html',
