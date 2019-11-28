@@ -7,13 +7,23 @@ import { Position } from '../interfaces/position.interface'
 
 @Injectable({ providedIn: 'root' })
 export class ScrollService {
-  private _scrollPercent = 80
+  private _scrollPercent = 70
   private scrollSubject: Subject<Document> = new Subject()
 
   constructor(private eventManager: EventManager) {
     this.eventManager.addGlobalEventListener('window', 'scroll', this.onScroll.bind(this))
   }
 
+  /**
+   * @function onScrolledDown
+   * @description Activate scroll event. Sets throttle,
+   *              map objects and returns scrollheight,
+   *              scrolltop and client height. Then filter
+   *              them by checks is user scrolling down
+   *              and checks percentege of current
+   *              position in document
+   * @returns {Array}
+   */
   get onScrolledDown$(): Observable<[Position, Position]> {
     return this.onScroll$.pipe(
       throttle(() => interval(300)),

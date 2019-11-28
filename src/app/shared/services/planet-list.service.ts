@@ -19,6 +19,12 @@ export class PlanetListService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * @function fetchPlanetList
+   * @description Fetch from api starter information and first elements,
+   *              then save them in cache
+   * @returns {PlanetListResponse}
+   */
   public fetchPlanetList(): Observable<PlanetListResponse> {
     return this.http.get<PlanetListResponse>(this.apiLink).pipe(
       tap(res => {
@@ -31,6 +37,16 @@ export class PlanetListService {
     )
   }
 
+  /**
+   * @function fetchNextPlanetList
+   * @description Checks all planets in list,
+   *              if all in, search by @param searchString
+   *              and calls @function updatePlanetList
+   *              If not, requests to api and getting
+   *              new planets. Then cache them all
+   *              and return @param Observable with requested planets
+   * @returns {PlanetListResponse}
+   */
   public fetchNextPlanetList(): Observable<PlanetListResponse> {
     if (this.isHaveAllPlanets() || this.searchString) {
       this.updatePlanetList(this.getFromCacheByName(this.searchString))
@@ -79,10 +95,13 @@ export class PlanetListService {
     return this.cachedPlanetList.filter(planet => planet.name.toLowerCase().indexOf(name.toLowerCase()) !== -1)
   }
 
-  public updateSearchString(string: string) {
-    this.searchString = string
-  }
-
+  /**
+   * @function findNewPlanets
+   * @param {PlanetList} results
+   * @description Function search from results new planets
+   *              which not in cached Array and save them
+   * @returns {PlanetList}
+   */
   private findNewPlanets(results): PlanetList[] {
     return results.filter(result => {
       const name = result.name.toLowerCase()
@@ -98,6 +117,15 @@ export class PlanetListService {
     this.planetList = list.sort()
   }
 
+  public updateSearchString(string: string) {
+    this.searchString = string
+  }
+
+  /**
+   * @function updatePaginationCount
+   * @param {number} count
+   * @description Setting pagination count requests
+   */
   private updatePaginationCount(count: number) {
     this.paginationCount = Math.ceil(count / 10)
   }
@@ -106,6 +134,12 @@ export class PlanetListService {
     this.currentPaginationNumber++
   }
 
+  /**
+   * @function resetPaginationNumber
+   * @description Resets paganiation number to 1.
+   *              Uses when you will be need search another
+   *              value from api
+   */
   public resetPaginationNumber() {
     this.currentPaginationNumber = 1
   }
