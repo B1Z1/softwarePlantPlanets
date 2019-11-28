@@ -1,3 +1,9 @@
-<ul>
-  <li *ngFor="let planet of planetListService.planetList" class="list__item" #planetItems>{{ planet.name }}</li>
-</ul>
+<div class="planet-list">
+  <ul>
+    <li *ngFor="let planet of planetListService.planetList" class="planet-list__item" #planetItems>
+      <a href="">
+        {{ planet.name }}
+      </a>
+    </li>
+  </ul>
+</div>

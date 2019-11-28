@@ -1,3 +1,12 @@
-.list__item{
-  margin-bottom: 128px;
+@import '../../../assets/styles/variables.scss';
+
+.planet-list {
+  position: relative;
+  text-align: center;
+  font-size: 2rem;
+  color: $colorOperate;
+  &__item {
+    margin-bottom: 128px;
+    list-style: none;
+  }
 }
