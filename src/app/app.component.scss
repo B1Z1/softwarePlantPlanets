@@ -4,4 +4,8 @@
   margin-left: auto;
   margin-right: auto;
   overflow-x: hidden;
+  &__router {
+    position: relative;
+    z-index: 2;
+  }
 }

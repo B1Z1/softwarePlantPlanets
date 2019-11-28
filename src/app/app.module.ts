@@ -9,10 +9,11 @@ import { PlanetListComponent } from './components/planet-list/planet-list.compon
 import { SearchComponent } from './components/search/search.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { PlanetComponent } from './pages/planet/planet.component';
-import { MainComponent } from './pages/main/main.component'
+import { MainComponent } from './pages/main/main.component';
+import { StardropComponent } from './components/stardrop/stardrop.component'
 
 @NgModule({
-  declarations: [AppComponent, PlanetListComponent, SearchComponent, HeroComponent, PlanetComponent, MainComponent],
+  declarations: [AppComponent, PlanetListComponent, SearchComponent, HeroComponent, PlanetComponent, MainComponent, StardropComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
